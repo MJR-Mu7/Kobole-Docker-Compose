@@ -13,4 +13,4 @@ Kobole NPoS,Nominated Proof of Stake, is an NFT enabled DAO enabling WASM Smart 
         docker-compose up
 
 
-The image provide gets Kobole from docker hub and adds Grafana and Prometheus for Metrics
+The image provided in the docker-compose.yaml file gets Kobole from docker hub and adds Grafana and Prometheus for Metrics
