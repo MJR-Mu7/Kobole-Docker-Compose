@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'kobole-nodes'
+    static_configs:
+      - targets: ['kobole:9615']
+        labels:
+          network: live

@@ -1,0 +1,74 @@
+version: "3.7"
+services:
+
+  kobole:
+    ports:
+      - "9944:9946"
+      - "9615:9615"
+      - "30336"
+    image: mjrmu7/kobole:1.0
+    user: root
+    networks:
+      - internet
+    volumes:
+      - ./res:/res/
+      - ./tmp:/tmp/
+    command: 
+      # - "--help"
+      - "--chain"
+      - "res/live.json"
+      - "--base-path"
+      - "/tmp/validator1"
+      - "--validator"
+      - "--name"
+      - "Max"
+      - "--ws-port"
+      - "9946"
+      - "--port"
+      - "30336"
+      # - "--rpc-port"
+      # - "9936"
+      - "--bootnodes"
+      - "/dns/apps.digitaltv.co.ke/tcp/30335/ws/p2p/12D3KooWDVzu5qcqAbKAB95PAQ3VL68HFYghzoXqfN9dLrShtG5a"
+      # Not only bind to localhost.
+      # - "--unsafe-ws-external"
+      # - "--unsafe-rpc-external"
+      - "--log"
+      - "sub-libp2p=trace"
+      - "--no-telemetry"
+      - "--rpc-cors"
+      - "all"
+      - "--prometheus-external"
+      - "--prometheus-port"
+      - "9615"
+  
+  prometheus:
+    image: prom/prometheus
+    networks:
+      - internet
+    ports:
+      - "9090:9090"
+    links:
+      - kobole:localhost
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    user: "104"
+    depends_on:
+      - prometheus
+    networks:
+      - internet
+    ports:
+      - 3001:3000
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning
+      - ../monitoring/grafana-dashboards/:/etc/grafana/provisioning/dashboard-definitions
+    restart: always
+
+
+networks:
+  kobole:
+  internet:
