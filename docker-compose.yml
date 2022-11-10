@@ -21,6 +21,7 @@ services:
       - "/tmp/validator1"
       - "--validator"
       - "--name"
+      # Change Validator name.
       - "Max"
       - "--ws-port"
       - "9946"
