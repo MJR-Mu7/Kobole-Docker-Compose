@@ -1,6 +1,6 @@
 ## Kobole-Docker-Compose
 
-## KOBOLE TESTNET - MUCHATHA
+## KOBOLE - MUCHATHA
 
 
 Kobole NPoS,Nominated Proof of Stake, is an NFT enabled DAO enabling WASM Smart Contracts.
