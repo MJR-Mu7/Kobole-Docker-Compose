@@ -6,13 +6,12 @@ services:
       - "9944:9946"
       - "9615:9615"
       - "30336"
-    image: mjrmu7/kobole:1.0
+    image: mjrmu7/kobole:1.5
     user: root
     networks:
       - internet
     volumes:
       - ./res:/res/
-      - ./tmp:/tmp/
     command: 
       # - "--help"
       - "--chain"
